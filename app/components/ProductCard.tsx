@@ -1,20 +1,28 @@
-
 import React from "react";
 import Btn_AddToCart from "./btn_AddToCart";
 
 interface Props {
-  name: string;
-  description: string;
+  id: number;
+  title: string;
+  url: string;
+  thumbnailURL: string;
 }
 
-function ProductCard() {
+const ProductCard = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/photos");
+  const images: Props[] = await res.json();
+  const selectedImages = images.filter((product) => product.id < 10);
+
   return (
-    <div>
-      <h2>Name of product goes here</h2>
-      <p>Item description</p>
-      <Btn_AddToCart />
-    </div>
+    <ul>
+      {selectedImages.map((product) => (
+        <li key={product.id}>
+          <p>{product.title}</p>
+          <img src={product.url} />
+        </li>
+      ))}
+    </ul>
   );
-}
+};
 
 export default ProductCard;

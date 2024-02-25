@@ -8,6 +8,8 @@ export default function Home() {
       <h2>helo world</h2>
 
       <Link href="/game">Game</Link>
+      <br />
+      <Link href="/users">Users</Link>
       <ProductCard />
     </main>
   );
